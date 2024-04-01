@@ -1,0 +1,1037 @@
+﻿<Window x:Class="nOCT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ni="http://schemas.ni.com/controls/2009/xaml/presentation"
+        Title="nOCT" Height="1030" Width="1910" Left="5" Top="5">
+    <Grid Background="Black">
+        <!-- entire UI -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!-- control corner -->
+        <Grid Grid.Column="0" Grid.Row="0" Margin="10" Background="DarkBlue">
+            <!-- control panel -->
+            <TabControl Background="DarkBlue">
+                <TabItem Background="DodgerBlue" Margin="6,-2,-10,0">
+                    <!-- configuration -->
+                    <TabItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">configuration</TextBlock>
+                            <Button Grid.Column="1" Grid.Row="0" Width="50" Name="btnConfigurationStart" Click="btnConfigurationStart_Click">start</Button>
+                            <Button Grid.Column="2" Grid.Row="0" Width="50" Name="btnConfigurationStop" Click="btnConfigurationStop_Click">stop</Button>
+                        </Grid>
+                    </TabItem.Header>
+                    <Grid Margin="10" Background="Black">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="4*" />
+                            <RowDefinition Height="3*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Background="DodgerBlue">
+                            <!-- configuration file -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" TextDecorations="Underline">parameter file</TextBlock>
+                                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="13" Height="20" Name="txtConfigurationParameterFilename" Text="{Binding strConfigurationParameterFilename}" />
+                                <Button Grid.Row="1" Grid.Column="16" Height="20" Name="btnConfigurationParameterFileOpen" Click="btnConfigurationParameterFileOpen_Click">open</Button>
+                                <Button Grid.Row="1" Grid.Column="18" Height="20" Name="btnConfigurationParameterFileSave" Click="btnConfigurationParameterFileSave_Click">save</Button>
+                                <!-- 20210712 HY Begin -->
+                                <Button Grid.Row="2" Grid.Column="18" Height="20" Name="btnConfigurationParameterFileUpdate" Click="btnConfigurationParameterFileUpdate_Click">Update</Button>
+                                <!-- 20210712 HY End -->
+                                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="18" Name="txtConfigurationParameterSummary" Text="{Binding strConfigurationParameterSummary}" />
+                            </Grid>
+                            <!-- configuration file -->
+                        </Grid>
+
+                        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="LightSkyBlue">
+                            <!-- DAQmx -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" FontWeight="Bold" TextDecorations="Underline">DAQmx board</TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="device" />
+                                <TextBox Grid.Column="3" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationDAQDevice" Text="{Binding strConfigurationDAQDevice}" />
+                                <TextBlock Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" TextWrapping="Wrap" Text="lines per second  (-1: external)" />
+                                <TextBox Grid.Column="3" Grid.Row="3" Height="20" VerticalAlignment="Top" Name="txtConfigurationLinesPerSecond" Text="{Binding nConfigurationLinesPerSecond}" />
+                                <TextBlock Grid.Column="1" Grid.Row="5" Text="ticks per line" />
+                                <TextBox Grid.Column="3" Grid.Row="5" Height="20" VerticalAlignment="Top" Name="txtConfigurationTicksPerLine" Text="{Binding nConfigurationTicksPerLine}" />
+                                <TextBlock Grid.Column="6" Grid.Row="1" Text="frames in WFM" />
+                                <TextBox Grid.Column="8" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationFramesInWFM" Text="{Binding nConfigurationFramesInWFM}" />
+                            </Grid>
+                            <!-- DAQmx -->
+                        </Grid>
+
+                        <Grid Grid.Column="2" Grid.Row="1" Background="PowderBlue">
+                            <!-- IMAQ -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" FontWeight="Bold" TextDecorations="Underline">IMAQ board</TextBlock>
+                                <CheckBox Grid.Column="1" Grid.Row="1" Name="chkConfigurationIMAQDevice1" IsChecked="{Binding bConfigurationIMAQDevice1}">device 1</CheckBox>
+                                <TextBox Grid.Column="3" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationIMAQDevice1" Text="{Binding strConfigurationIMAQDevice1}" />
+                                <CheckBox Grid.Column="1" Grid.Row="2" Name="chkConfigurationIMAQDevice2" IsChecked="{Binding bConfigurationIMAQDevice2}">device 2</CheckBox>
+                                <TextBox Grid.Column="3" Grid.Row="2" Height="20" VerticalAlignment="Top" Name="txtConfigurationIMAQDevice2" Text="{Binding strConfigurationIMAQDevice2}" />
+                                <TextBlock Grid.Column="1" Grid.Row="4" Text="line length" />
+                                <TextBox Grid.Column="3" Grid.Row="4" Height="20" VerticalAlignment="Top" Name="txtConfigurationIMAQLineLength" Text="{Binding nConfigurationIMAQLineLength}" />
+                                <TextBlock Grid.Column="1" Grid.Row="6" Text="ring buffer size" />
+                                <TextBox Grid.Column="3" Grid.Row="6" Height="20" VerticalAlignment="Top" Name="txtConfigurationIMAQRingBufferLength" Text="{Binding nConfigurationIMAQRingBufferLength}" />
+                            </Grid>
+                            <!-- IMAQ -->
+                        </Grid>
+
+                        <Grid Grid.Column="3" Grid.Row="1" Background="LightSkyBlue">
+                            <!-- high speed -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" FontWeight="Bold" TextDecorations="Underline">high speed board</TextBlock>
+                                <CheckBox Grid.Column="1" Grid.Row="1" Name="chkConfigurationHSDevice" IsChecked="{Binding bConfigurationHSDevice}">device</CheckBox>
+                                <TextBox Grid.Column="3" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationHSDevice" Text="{Binding strConfigurationHSDevice}" />
+                                <CheckBox Grid.Column="1" Grid.Row="3" Name="chkConfigurationHSChannel1" IsChecked="{Binding bConfigurationHSChannel1}">channel 1</CheckBox>
+                                <CheckBox Grid.Column="1" Grid.Row="4" Name="chkConfigurationHSChannel2" IsChecked="{Binding bConfigurationHSChannel2}">channel 2</CheckBox>
+                                <TextBlock Grid.Column="1" Grid.Row="6" Text="line length" />
+                                <TextBox Grid.Column="3" Grid.Row="6" Height="20" VerticalAlignment="Top" Name="txtConfigurationHSLineLength" Text="{Binding nConfigurationHSLineLength}" />
+                            </Grid>
+                            <!-- high speed -->
+                        </Grid>
+
+                        <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" Background="DodgerBlue">
+                            <!-- general parameters -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="lines per chunk" />
+                                <TextBox Grid.Column="3" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationLinesPerChunk" Text="{Binding nConfigurationLinesPerChunk}" />
+                                <TextBlock Grid.Column="1" Grid.Row="3" Text="chunks per image" />
+                                <TextBox Grid.Column="3" Grid.Row="3" Height="20" VerticalAlignment="Top" Name="txtConfigurationChunksPerImage" Text="{Binding nConfigurationChunksPerImage}"/>
+                                <TextBlock Grid.Column="5" Grid.Row="1" Text="pre-ignore chunks" />
+                                <TextBox Grid.Column="7" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationPreIgnoreChunks" Text="{Binding nConfigurationPreIgnoreChunks}" />
+                                <TextBlock Grid.Column="5" Grid.Row="3" Text="post-ignore chunks" />
+                                <TextBox Grid.Column="7" Grid.Row="3" Height="20" VerticalAlignment="Top" Name="txtConfigurationPostIgnoreChunks" Text="{Binding nConfigurationPostIgnoreChunks}" />
+                                <TextBlock Grid.Column="9" Grid.Row="1" Text="images per volume" />
+                                <TextBox Grid.Column="11" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationImagesPerVolume" Text="{Binding nConfigurationImagesPerVolume}" />
+                                <TextBlock Grid.Column="13" Grid.Row="1" Text="linked list length" />
+                                <TextBox Grid.Column="15" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtConfigurationLinkedListLength" Text="{Binding nConfigurationLinkedListLength}" />
+                                <TextBlock Grid.Column="9" Grid.Row="3" Text="zero-padding X" />
+                                <TextBox Grid.Column="11" Grid.Row="3" Height="20" VerticalAlignment="Top" Name="txtConfigurationZPFactor" Text="{Binding nConfigurationZPFactor}" />
+                                <!-- 20210712 HY Beginning -->
+                                <TextBlock Grid.Column="13" Grid.Row="3" Text="Num of DataFile" />
+                                <TextBox Grid.Column="15" Grid.Row="3" Height="20" VerticalAlignment="Top" Name="txtDataFileNumber" Text="{Binding nDataFileNumber}" />
+                                <!-- 20210712 HY Ending -->
+                            </Grid>
+                            <!-- general parameters -->
+                        </Grid>
+
+                    </Grid>
+                    <!-- configuration -->
+                </TabItem>
+
+                <TabItem Background="DodgerBlue">
+                    <!-- operation -->
+                    <TabItem.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">operation</TextBlock>
+                            <Button Grid.Column="1" Grid.Row="0" Width="50" Name="btnOperationStart" Click="btnOperationStart_Click">start</Button>
+                            <Button Grid.Column="2" Grid.Row="0" Width="50" Name="btnOperationStop" Click="btnOperationStop_Click">stop</Button>
+                        </Grid>
+                    </TabItem.Header>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="7*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="DodgerBlue">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" FontWeight="Bold" TextDecorations="Underline">directory</TextBlock>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="16" Height="20" VerticalAlignment="Top" Name="txtOperationFileDirectory" Text="{Binding strOperationFileDirectory}" />
+                            <Button Grid.Row="1" Grid.Column="18" Height="20" Name="btnOperationFileDirectoryBrowse" Click="btnOperationFileDirectoryBrowse_Click">browse</Button>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" FontWeight="Bold" TextDecorations="Underline">filename</TextBlock>
+                            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="13" Height="20" VerticalAlignment="Top" Name="txtOperationFilePrefix" Text="{Binding strOperationFilePrefix}" />
+                            <TextBox Grid.Row="4" Grid.Column="16" Height="20" VerticalAlignment="Top" Name="txtOperationFileNumber" Text="{Binding nOperationFileNumber}" />
+                            <CheckBox Grid.Row="4" Grid.Column="18" Height="20" Name="chkOperationFileRecord" IsChecked="{Binding bOperationFileRecord}">record</CheckBox>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="LightSkyBlue">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" FontWeight="Bold" TextDecorations="Underline">Fast axis (AO2)</TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Text="start voltage" />
+                            <TextBox Grid.Column="3" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtOperationFastGalvoStart" Text="{Binding dOperationFastGalvoStart}" />
+                            <TextBlock Grid.Column="1" Grid.Row="2" Text="stop voltage" />
+                            <TextBox Grid.Column="3" Grid.Row="2" Height="20" VerticalAlignment="Top" Name="txtOperationFastGalvoStop" Text="{Binding dOperationFastGalvoStop}" />
+                            <TextBlock Grid.Column="1" Grid.Row="4" Text="lines per position" />
+                            <TextBox Grid.Column="3" Grid.Row="4" Height="20" VerticalAlignment="Top" Name="txtOperationFastGalvoLinesPerPosition" Text="{Binding nOperationFastGalvoLinesPerPosition}" />
+                            <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" FontWeight="Bold" TextDecorations="Underline">Slow axis (AO3)</TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="7" Text="start voltage" />
+                            <TextBox Grid.Column="3" Grid.Row="7" Height="20" VerticalAlignment="Top" Name="txtOperationSlowGalvoStart" Text="{Binding dOperationSlowGalvoStart}" />
+                            <TextBlock Grid.Column="1" Grid.Row="8" Text="stop voltage" />
+                            <TextBox Grid.Column="3" Grid.Row="8" Height="20" VerticalAlignment="Top" Name="txtOperationSlowGalvoStop" Text="{Binding dOperationSlowGalvoStop}" />
+                            <TextBlock Grid.Column="1" Grid.Row="10" Text="current frame" />
+                            <TextBox Grid.Column="3" Grid.Row="10" Height="20" VerticalAlignment="Top" Name="txtOperationSlowGalvoCurrentFrame" Text="{Binding nOperationSlowGalvoCurrentFrame}" />
+                            <Button Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="8" Name="btnOperationGalvoUpdate" Click="btnOperationGalvoUpdate_Click">update</Button>
+                            <TextBlock Grid.Column="6" Grid.Row="1">center X</TextBlock>
+                            <TextBlock Grid.Column="6" Grid.Row="2">center Y</TextBlock>
+                            <TextBlock Grid.Column="6" Grid.Row="3">center angle</TextBlock>
+                            <TextBlock Grid.Column="6" Grid.Row="4">scan width</TextBlock>
+                            <TextBox Grid.Column="8" Grid.Row="1" Height="20" VerticalAlignment="Top" Name="txtOperationCenterX" Text="{Binding dOperationCenterX}" />
+                            <TextBox Grid.Column="8" Grid.Row="2" Height="20" VerticalAlignment="Top" Name="txtOperationCenterY" Text="{Binding dOperationCenterY}"/>
+                            <TextBox Grid.Column="8" Grid.Row="3" Height="20" VerticalAlignment="Top" Name="txtOperationCenterAngle" Text="{Binding dOperationCenterAngle}"/>
+                            <TextBox Grid.Column="8" Grid.Row="4" Height="20" VerticalAlignment="Top" Name="txtOperationScanWidth" Text="{Binding dOperationScanWidth}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+                                <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="listVariableType" SelectedIndex="{Binding nVariableType}">
+                                    <ComboBoxItem>en face view</ComboBoxItem>
+                                    <ComboBoxItem>phase view</ComboBoxItem>
+                                </ComboBox>
+                                <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TabStripPlacement="Top">
+                                    <TabItem Background="DodgerBlue">
+                                        <!-- en face -->
+                                        <TabItem.Header>
+                                            <TextBlock Text="en face" />
+                                        </TabItem.Header>
+                                        <!-- en face -->
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">min depth</TextBlock>
+                                            <TextBox Grid.Row="1" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtEnFaceMinDepth" Text="{Binding nEnFaceMinDepth}"/>
+                                            <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">max depth</TextBlock>
+                                            <TextBox Grid.Row="2" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtEnFaceMaxDepth" Text="{Binding nEnFaceMaxDepth}"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="7" VerticalAlignment="Center">fast axis pixel</TextBlock>
+                                            <TextBox Grid.Row="1" Grid.Column="9" Height="20" VerticalAlignment="Center" x:Name="txtEnFaceFastAxisPixel" Text="{Binding nEnFaceFastAxisPixel}"/>
+                                            <TextBlock Grid.Row="2" Grid.Column="7" VerticalAlignment="Center">fast axis voltage</TextBlock>
+                                            <TextBox Grid.Row="2" Grid.Column="9" Height="20" VerticalAlignment="Center" x:Name="txtEnFaceFastAxisVoltage" Text="{Binding nEnFaceFastAxisVoltage}"/>
+                                            <CheckBox Grid.Row="3" Grid.Column="1" Height="20" VerticalAlignment="Center" x:Name="chkOperationPeakTracking" IsChecked="{Binding bOperationPeakTracking}" Content="peak tracking"/>
+                                            <TextBox Grid.Row="3" Grid.Column="3" Height="20" VerticalAlignment="Center" x:Name="txtEnFacePeakDepth" Text="{Binding nEnFacePeakDepth}"/>
+                                            <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">half width</TextBlock>
+                                            <TextBox Grid.Row="4" Grid.Column="3" Height="20" VerticalAlignment="Center" x:Name="txtEnFacePeakHalfWidth" Text="{Binding nEnFacePeakHalfWidth}"/>
+                                            <TextBlock Grid.Row="4" Grid.Column="7" VerticalAlignment="Center">slow axis pixel</TextBlock>
+                                            <TextBox Grid.Row="4" Grid.Column="9" Height="20" VerticalAlignment="Center" x:Name="txtEnFaceSlowAxisPixel" Text="{Binding nEnFaceSlowAxisPixel}"/>
+                                            <TextBlock Grid.Row="5" Grid.Column="7" VerticalAlignment="Center">slow axis voltage</TextBlock>
+                                            <TextBox Grid.Row="5" Grid.Column="9" Height="20" VerticalAlignment="Center" x:Name="txtEnFaceSlowAxisVoltage" Text="{Binding nEnFaceSlowAxisVoltage}"/>
+
+                                        </Grid>
+                                    </TabItem>
+
+                                    <TabItem>
+                                        <!-- phase -->
+                                        <TabItem.Header>
+                                            <TextBlock Text="phase" />
+                                        </TabItem.Header>
+                                        <!-- phase -->
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">reference depth</TextBlock>
+                                            <TextBox Grid.Row="1" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtPhaseReferenceDepth" Text="{Binding nPhaseReferenceDepth}"/>
+                                        </Grid>
+                                    </TabItem>
+                                    
+                                    <TabItem>
+                                        <!-- phase scan-->
+                                        <TabItem.Header>
+                                            <TextBlock Text="phase scan" />
+                                        </TabItem.Header>
+                                        <!-- phase scan-->
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="1*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="17*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">Fast axis (AO2)</TextBlock>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">start voltage</TextBlock>
+                                            <TextBox Grid.Row="1" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtPhaseScanFastGalvoStart" Text="{Binding dPhaseScanFastGalvoStart}"/>
+                                            <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">stop voltage</TextBlock>
+                                            <TextBox Grid.Row="2" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtPhaseScanFastGalvoStop" Text="{Binding dPhaseScanFastGalvoStop}"/>
+                                            <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">Slow axis (AO3)</TextBlock>
+                                            <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">start voltage</TextBlock>
+                                            <TextBox Grid.Row="4" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtPhaseScanSlowGalvoStart" Text="{Binding dPhaseScanSlowGalvoStart}"/>
+                                            <TextBlock Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">stop voltage</TextBlock>
+                                            <TextBox Grid.Row="5" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtPhaseScanSlowGalvoStop" Text="{Binding dPhaseScanSlowGalvoStop}"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="5" VerticalAlignment="Center">steps</TextBlock>
+                                            <TextBox Grid.Row="1" Grid.Column="7" Height="20" VerticalAlignment="Center" Name="txtPhaseScanFastGalvoSteps" Text="{Binding nPhaseScanFastGalvoSteps}"/>
+                                            <TextBlock Grid.Row="4" Grid.Column="5" VerticalAlignment="Center">steps</TextBlock>
+                                            <TextBox Grid.Row="4" Grid.Column="7" Height="20" VerticalAlignment="Center" Name="txtPhaseScanSlowGalvoSteps" Text="{Binding nPhaseScanSlowGalvoSteps}"/>
+                                            <TextBlock Grid.Row="6" Grid.Column="1" VerticalAlignment="Center">images per spot</TextBlock>
+                                            <TextBox Grid.Row="6" Grid.Column="3" Height="20" VerticalAlignment="Center" Name="txtPhaseScanImagesPerSpot" Text="{Binding nPhaseScanImagesPerSpot}"/>
+                                            <TextBlock Grid.Row="6" Grid.Column="5" VerticalAlignment="Center">resting time</TextBlock>
+                                            <TextBox Grid.Row="6" Grid.Column="7" Height="20" VerticalAlignment="Center" Name="txtPhaseScanRestingTime" Text="{Binding nPhaseScanRestingTime}"/>
+                                            <TextBlock Grid.Row="5" Grid.Column="9" VerticalAlignment="Center">filename prefix</TextBlock>
+                                            <TextBox Grid.Row="5" Grid.Column="11" Height="20" VerticalAlignment="Center" Name="txtPhaseScanFilePrefix" Text="{Binding strPhaseScanFilePrefix}"/>
+                                            <CheckBox Grid.Row="6" Grid.Column="11" Height="20" VerticalAlignment="Center" x:Name="chkOperationPhaseScanning" IsChecked="{Binding bOperationPhaseScanning}" Content="Enable"/>
+                                        </Grid>
+                                    </TabItem>
+
+                                </TabControl>
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+                    <!-- operation -->
+                </TabItem>
+
+                <TabItem Background="DodgerBlue">
+                    <!-- diagnostics -->
+                    <TabItem.Header>
+                        <TextBlock Text="diagnostics" />
+                    </TabItem.Header>
+
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Background="DodgerBlue" Name="nodeCheck">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="17*" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="116*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontWeight="Bold" TextDecorations="Underline">thread status</TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">primary kernel</TextBlock>
+                            <TextBox Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" Height="20" Name="txtDiagnosticsPrimaryKernelStatus" Text="{Binding strDiagnosticsPrimaryKernelStatus}" />
+                            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">WFM</TextBlock>
+                            <TextBox Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Height="20" Name="txtDiagnosticsWFMThreadStatus" Text="{Binding strDiagnosticsWFMThreadStatus}" />
+                            <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">acquisition</TextBlock>
+                            <TextBox Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" Height="20" Name="txtDiagnosticsAcquisitionThreadStatus" Text="{Binding strDiagnosticsAcquisitionThreadStatus}" />
+                            <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">save</TextBlock>
+                            <TextBox Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" Height="20" Name="txtDiagnosticsSaveThreadStatus" Text="{Binding strDiagnosticsSaveThreadStatus}" />
+                            <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">processing</TextBlock>
+                            <TextBox Grid.Column="3" Grid.Row="5" VerticalAlignment="Center" Height="20" Name="txtDiagnosticsProcessingThreadStatus" Text="{Binding strDiagnosticsProcessingThreadStatus}" />
+                            <TextBlock Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center">cleanup</TextBlock>
+                            <TextBox Grid.Column="3" Grid.Row="6" VerticalAlignment="Center" Height="20" Name="txtDiagnosticsCleanupThreadStatus" Text="{Binding strDiagnosticsCleanupThreadStatus}" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" FontWeight="Bold" TextDecorations="Underline">data node list</TextBlock>
+                            <Button Grid.Column="5" Grid.Row="1" Height="20" Name="btnDiagnosticsNodePrev" Click="btnDiagnosticsNodePrev_Click">prev</Button>
+                            <Button Grid.Column="7" Grid.Row="1" Height="20" Name="btnDiagnosticsNodeNext" Click="btnDiagnosticsNodeNext_Click">next</Button>
+                            <TextBlock Grid.Column="5" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">node number</TextBlock>
+                            <TextBox Grid.Column="7" Grid.Row="2" Height="20" VerticalAlignment="Center" Name="txtDiagnosticsNodeID" Text="{Binding nDiagnosticsNodeID}" />
+                            <TextBlock Grid.Column="5" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center">acquisition (3)</TextBlock>
+                            <TextBox Grid.Column="7" Grid.Row="3" Height="20" VerticalAlignment="Center" Name="txtDiagnosticsNodeAcquisition" Text="{Binding bDiagnosticsNodeAcquisition}" />
+                            <TextBlock Grid.Column="5" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">save (2)</TextBlock>
+                            <TextBox Grid.Column="7" Grid.Row="4" Height="20" VerticalAlignment="Center" Name="txtDiagnosticsNodeSave" Text="{Binding bDiagnosticsNodeSave}" />
+                            <TextBlock Grid.Column="5" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center">processing (1)</TextBlock>
+                            <TextBox Grid.Column="7" Grid.Row="5" Height="20" VerticalAlignment="Center" Name="txtDiagnosticsNodeProcessing" Text="{Binding bDiagnosticsNodeProcessing}" />
+                            <TextBox Grid.Row="7" Grid.Column="7" Name="txtRingDiagnostic1" Text="{Binding nRingDiagnostic1}" />
+                            <TextBox Grid.Row="8" Grid.Column="7" Name="txtRingDiagnostic2" Text="{Binding nRingDiagnostic2}" />
+                            <TextBox Grid.Row="8" Grid.Column="3" Name="txtRingDiagnostic3" Text="{Binding nRingDiagnostic3}" />
+                            <ni:IntensityGraph Grid.Row="1" Grid.RowSpan="6" Grid.Column="9" Background="White" Name="graphDiagnosticsNodeList">
+                                <ni:IntensityGraph.ColorScale>
+                                    <ni:ColorScale Location="None">
+                                        <ni:ColorScaleMarker Color="Black" Value="0" />
+                                        <ni:ColorScaleMarker Color="White" Value="-1" />
+                                        <ni:ColorScaleMarker Color="Blue" Value="1" />
+                                    </ni:ColorScale>
+                                </ni:IntensityGraph.ColorScale>
+                            </ni:IntensityGraph>
+                            <TextBox Grid.Column="3" Grid.Row="7" VerticalAlignment="Center" Height="20" x:Name="txtDiagnosticsWriteThreadStatus" Text="{Binding strDiagnosticsWriteThreadStatus}" Margin="0,0,0,1" />
+                            <TextBlock Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,5" Text="write to disk"/>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Background="LightSkyBlue">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="8*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="158*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" TextDecorations="Underline">WFM in memory</TextBlock>
+                            <ni:Graph Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="1" Background="White" Name="graphDiagnosticsWFM">
+                                <ni:Graph.Axes>
+                                    <ni:AxisDouble Orientation="Horizontal" Adjuster="None" Name="axisDiagnosticsWFMHorizontal" />
+                                    <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisDiagnosticsWFMVertical" />
+                                </ni:Graph.Axes>
+                            </ni:Graph>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <!-- diagnostics -->
+                </TabItem>
+            </TabControl>
+            <!-- control panel -->
+        </Grid>
+
+        <!-- processing corner -->
+        <TabControl Grid.Row="1" Grid.Column="0" Margin="10" Background="DarkBlue">
+
+            <!-- DAQ tab -->
+            <TabItem>
+                <TabItem.Header>DAQ</TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Background="LightSkyBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" TextDecorations="Underline">DAQ</TextBlock>
+                    </Grid>
+                    <ni:Graph Grid.Row="0" Grid.Column="1" Background="White" Name="graphDAQ">
+                        <ni:Graph.Axes>
+                            <ni:AxisDouble Orientation="Horizontal" Adjuster="None" Name="axisDAQHorizontal" />
+                            <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisDAQVertical" />
+                        </ni:Graph.Axes>
+                    </ni:Graph>
+                </Grid>
+            </TabItem>
+
+            <!-- spectrum tab -->
+            <TabItem>
+                <TabItem.Header>spectrum</TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Background="LightBlue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="12*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" FontWeight="Bold" TextDecorations="Underline">spectrum</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">reference type</TextBlock>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"  Name="listReferenceType" SelectedIndex="{Binding nReferenceType}" >
+                            <ComboBoxItem>no subtraction</ComboBoxItem>
+                            <ComboBoxItem>subtract average</ComboBoxItem>
+                            <ComboBoxItem>record reference</ComboBoxItem>
+                            <ComboBoxItem>use recorded ref</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock Grid.Row="1" Grid.Column="5" VerticalAlignment="Center">aline</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtSpectrumLineNumber" Text="{Binding nSpectrumLineNumber}" />
+                        <TextBlock Grid.Row="2" Grid.Column="5" VerticalAlignment="Center">max</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtSpectrumColorScaleMax" Text="{Binding nSpectrumColorScaleMax}" />
+                        <TextBlock Grid.Row="3" Grid.Column="5" VerticalAlignment="Center">min</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtSpectrumColorScaleMin" Text="{Binding nSpectrumColorScaleMin}" />
+                    </Grid>
+                    <ni:Graph Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Background="White" Name="graphSpectrum">
+                        <ni:Graph.Axes>
+                            <ni:AxisDouble Orientation="Horizontal" Adjuster="None" Name="axisSpectrumHorizontal" />
+                            <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisSpectrumVertical" />
+                        </ni:Graph.Axes>
+                    </ni:Graph>
+                </Grid>
+            </TabItem>
+
+            <!-- calibration tab -->
+            <TabItem>
+                <TabItem.Header>k-calibration</TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Background="LightBlue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="12*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Name="chkCalibrate" IsChecked="{Binding bCalibrate}" >k calibration</CheckBox>
+                        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">max dB</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="20" Name="txtCalibrationMax" Text="{Binding dCalibrationMax}" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">min dB</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Height="20" Name="txtCalibrationMin" Text="{Binding dCalibrationMin}" />
+                        <TextBlock Grid.Row="1" Grid.Column="5" VerticalAlignment="Center">left</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtCalibrationLeft" Text="{Binding nCalibrationLeft}" />
+                        <TextBlock Grid.Row="2" Grid.Column="5" VerticalAlignment="Center">right</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtCalibrationRight" Text="{Binding nCalibrationRight}" />
+                        <TextBlock Grid.Row="3" Grid.Column="5" VerticalAlignment="Center">round</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtCalibrationRound" Text="{Binding nCalibrationRound}" />
+                        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Height="20" VerticalAlignment="Center" Name="btnCalibrationLoad" Click="btnCalibrationLoad_Click" >load</Button>
+                        <Button Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3" Height="20" VerticalAlignment="Center" Name="btnCalibrationSave" Click="btnCalibrationSave_Click" >save</Button>
+                    </Grid>
+                    <ni:Graph Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Background="White" Name="graphCalibrationDepthProfile">
+                        <ni:Graph.Axes>
+                            <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisCalibrationDepthProfileHorizontal" />
+                            <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisCalibrationDepthProfileVertical" />
+                        </ni:Graph.Axes>
+                    </ni:Graph>
+                    <ni:Graph Grid.Row="0" Grid.Column="3" Background="White" Name="graphCalibrationPhase">
+                        <ni:Graph.Axes>
+                            <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisCalibrationPhaseHorizontal" />
+                            <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisCalibrationPhaseVertical" />
+                        </ni:Graph.Axes>
+                    </ni:Graph>
+                </Grid>
+            </TabItem>
+
+            <!-- dispersion compensation tab -->
+            <TabItem>
+                <TabItem.Header>dispersion compensation</TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Background="DodgerBlue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="12*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">max dB</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Height="20" Name="txtDispersionMax" Text="{Binding dDispersionMax}" />
+                        <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">min dB</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Height="20" Name="txtDispersionMin" Text="{Binding dDispersionMin}" />
+                        <TextBlock Grid.Row="1" Grid.Column="5" VerticalAlignment="Center">left</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtDispersionLeft" Text="{Binding nDispersionLeft}" />
+                        <TextBlock Grid.Row="2" Grid.Column="5" VerticalAlignment="Center">right</TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtDispersionRight" Text="{Binding nDispersionRight}" />
+                        <TextBlock Grid.Row="3" Grid.Column="5" VerticalAlignment="Center">round</TextBlock>
+                        <TextBox Grid.Row="3" Grid.Column="7" VerticalAlignment="Center" Height="20" Name="txtDispersionRound" Text="{Binding nDispersionRound}" />
+                        <CheckBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Height="20" HorizontalAlignment="Left" Name="chkDispersion" IsChecked="{Binding bDispersion}" >dispersion</CheckBox>
+                        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Height="20" VerticalAlignment="Center" Name="btnDispersionLoad" Click="btnDispersionLoad_Click" >load</Button>
+                        <Button Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3" Height="20" VerticalAlignment="Center" Name="btnDispersionSave" Click="btnDispersionSave_Click" >save</Button>
+                    </Grid>
+                    <ni:Graph Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Background="White" Name="graphDispersionDepthProfile">
+                        <ni:Graph.Axes>
+                            <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisDispersionDepthProfileHorizontal" />
+                            <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisDispersionDepthProfileVertical" />
+                        </ni:Graph.Axes>
+                    </ni:Graph>
+                    <ni:Graph Grid.Row="0" Grid.Column="3" Background="White" Name="graphDispersionPhase">
+                        <ni:Graph.Axes>
+                            <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisDispersionPhaseHorizontal" />
+                            <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisDispersionPhaseVertical" />
+                        </ni:Graph.Axes>
+                    </ni:Graph>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+        <!-- intensity corner -->
+        <Grid Grid.Column="1" Grid.Row="0" Margin="10" Background="DarkBlue">
+
+            <!-- corner layout  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+            <!-- control section -->
+            <Grid Grid.Row="0" Grid.Column="0" Margin="10" Background="DodgerBlue">
+
+                <!-- section layout -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="17*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="17*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <!-- section components -->
+                <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" Name="chkShowIntensity" IsChecked="{Binding bShowIntensity}">intensity images</CheckBox>
+                <TextBox Grid.Row="0" Grid.Column="3" Height="20" Name="txtSkipLines" Text="{Binding nSkipLines}" />
+                <TextBlock Grid.Row="1" Grid.Column="1">line</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="3" Height="20" Name="txtIntensityLine" Text="{Binding nIntensityLine}" />
+                <TextBlock Grid.Row="2" Grid.Column="1">point</TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="3" Height="20" Name="txtIntensityPoint" Text="{Binding nIntensityPoint}" />
+            </Grid>
+
+            <!-- intensity top -->
+            <ni:Graph Grid.Row="0" Grid.Column="1" Background="White" Name="graphIntensityTop" Margin="4.667,5,85.333,5">
+                <ni:Graph.Axes>
+                    <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisIntensityTopHorizontal" />
+                    <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisIntensityTopVertical" />
+                </ni:Graph.Axes>
+            </ni:Graph>
+
+            <!-- intensity left -->
+            <ni:Graph Grid.Row="1" Grid.Column="0" Background="White" Name="graphIntensityLeft" Margin="-47,58,646.333,80" Grid.ColumnSpan="2">
+                <ni:Graph.RenderTransform>
+                    <RotateTransform Angle="90"/>
+                </ni:Graph.RenderTransform>
+                <ni:Graph.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5" />
+                </ni:Graph.RenderTransformOrigin>
+                <ni:Graph.Axes>
+                    <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisIntensityLeftHorizontal" />
+                    <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisIntensityLeftVertical" />
+                </ni:Graph.Axes>
+            </ni:Graph>
+
+            <!-- main intensity -->
+            <ni:IntensityGraph Grid.Row="1" Grid.Column="1" Background="DodgerBlue" Name="graphIntensity" Margin="5,15,5,0">
+                <!-- Inverts Y-axis-->
+                <ni:IntensityGraph.VerticalAxis>
+                    <ni:AxisDouble IsInverted="True" Adjuster="None" Range="0, 1024, System.Double"/>
+                </ni:IntensityGraph.VerticalAxis >
+                <ni:IntensityGraph.HorizontalAxis>
+                    <ni:AxisDouble Adjuster="None" Range="0, 1023, System.Double"/>
+                </ni:IntensityGraph.HorizontalAxis >
+                <ni:IntensityGraph.ColorScale>
+                    <ni:ColorScale Location ="Far" LowColor="Black" HighColor="White">
+                        <ni:ColorScaleMarker Color="Black" Value="50"/>
+                        <ni:ColorScaleMarker Color="White" Value="100"/>
+                    </ni:ColorScale>
+                </ni:IntensityGraph.ColorScale>
+            </ni:IntensityGraph>
+
+        </Grid>
+
+        <!-- variable corner -->
+        <Grid Grid.Column="1" Grid.Row="1" Margin="10" Background="DarkBlue">
+
+            <!-- corner layout  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+            <!-- control section -->
+            <Grid Grid.Row="0" Grid.Column="0" Margin="10" Background="DodgerBlue">
+
+                <!-- section layout -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="17*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="17*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <!-- section components -->
+                <CheckBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" Name="chkShowVariable" IsChecked="{Binding bShowVariable}">variable images</CheckBox>
+                <TextBox Grid.Row="1" Grid.Column="3" Height="20" Name="txtVariableLine" Text="{Binding nVariableLine}" />
+                <TextBlock Grid.Row="2" Grid.Column="1">point</TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="3" Height="20" Name="txtVariablePoint" Text="{Binding nVariablePoint}" />
+            </Grid>
+
+            <!-- variable top -->
+            <ni:Graph Grid.Row="0" Grid.Column="1" Background="White" Name="graphVariableTop" Margin="4.667,5,85.333,5">
+                <ni:Graph.Axes>
+                    <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisVariableTopHorizontal" />
+                    <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisVariableTopVertical" />
+                </ni:Graph.Axes>
+            </ni:Graph>
+
+            <!-- variable left -->
+            <ni:Graph Grid.Row="1" Grid.Column="0" Background="White" Name="graphVariableLeft" Margin="-47,58,646.333,80" Grid.ColumnSpan="2">
+                <ni:Graph.RenderTransform>
+                    <RotateTransform Angle="90"/>
+                </ni:Graph.RenderTransform>
+                <ni:Graph.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5" />
+                </ni:Graph.RenderTransformOrigin>
+                <ni:Graph.Axes>
+                    <ni:AxisInt32 Orientation="Horizontal" Adjuster="None" Name="axisVariableLeftHorizontal" />
+                    <ni:AxisDouble Orientation="Vertical" Adjuster="None" Name="axisVariableLeftVertical" />
+                </ni:Graph.Axes>
+            </ni:Graph>
+
+            <!-- main variable -->
+            <ni:IntensityGraph Grid.Row="1" Grid.Column="1" Background="DodgerBlue" Name="graphVariable" Margin="4.667,10,5.333,5">
+                <!-- Inverts Y-axis-->
+                <ni:IntensityGraph.VerticalAxis>
+                    <ni:AxisDouble IsInverted="True" Adjuster="None" Range="0, 199, System.Double"/>
+                </ni:IntensityGraph.VerticalAxis >
+                <ni:IntensityGraph.HorizontalAxis>
+                    <ni:AxisDouble Adjuster="None" Range="0, 1023, System.Double"/>
+                </ni:IntensityGraph.HorizontalAxis >
+                <ni:IntensityGraph.ColorScale>
+                    <ni:ColorScale Location ="Far" LowColor="White" HighColor="Black">
+                        <ni:ColorScaleMarker Color="White" Value="50"/>
+                        <ni:ColorScaleMarker Color="Black" Value="100"/>
+                    </ni:ColorScale>
+                </ni:IntensityGraph.ColorScale>
+                <ni:IntensityGraph.Children>
+                    <ni:Cursor TargetBrush="Red" TargetShape="Diamond" CrosshairBrush="Red" />
+                </ni:IntensityGraph.Children>
+            </ni:IntensityGraph>
+
+        </Grid>
+
+    </Grid>
+
+</Window>
